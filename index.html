@@ -1,153 +1,268 @@
+𝐻𝒶𝓂𝒾𝒹, [12/08/1404 11:38 ب.ظ]
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فروشگاه مدل سه‌بعدی MTA</title>
+    <title>پلتفرم ارتقاء یافته با پنل کاربری</title>
+    <!-- لینک‌های لازم برای Model-Viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <!-- استایل‌های سفارشی -->
     <style>
         body {
-            margin: 0;
-            font-family: "Segoe UI", sans-serif;
-            background-color: #f7f7f7;
-            direction: rtl;
-        }
-
-        header {
-            background-color: #ff0038;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-        }
-
-        nav {
-            background-color: #fff;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-        }
-
-        nav a {
-            text-decoration: none;
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f4f7f9;
             color: #333;
-            margin: 0 15px;
-            font-weight: bold;
+            margin: 0;
+            padding: 0;
         }
 
-        nav a:hover {
-            color: #ff0038;
-        }
-
-        .container {
+        /* استایل هدر و ناوبری */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px 40px;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        nav a, .user-actions a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, .user-actions a:hover {
+            color: #007bff;
+        }
+
+        /* استایل بخش محتوا */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 30px;
             justify-content: center;
-            padding: 20px;
+            flex-wrap: wrap;
         }
 
         .card {
-            width: 280px;
-            background-color: white;
+            background-color: #ffffff;
             border-radius: 10px;
-            margin: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            transition: 0.3s;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
+        /* استایل عکس ثابت اضافه شده */
+        .card-image-top {
+            width: 100%;
+            height: 200px; /* ارتفاع ثابت برای کاور عکس */
+            object-fit: cover; /* برای اینکه عکس بدون کشیدگی منطبق شود */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        /* استایل مدل سه‌بعدی (Model Viewer) */
         model-viewer {
             width: 100%;
-            height: 250px;
-            background-color: #eee;
+            height: 350px; /* ارتفاع مدل‌ساز */
+            background-color: #e9ecef;
         }
 
-        .card-info {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-info h3 {
-            margin: 10px 0 5px;
-        }
-
-        .card-info p {
-            color: #777;
-            font-size: 14px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #ff0038;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer {
-            background-color: #222;
-            color: #ccc;
-            text-align: center;
+        .card-content {
             padding: 20px;
-            margin-top: 40px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            color: #212529;
+        }
+
+        /* استایل برای بخش پشتیبانی و دانلودها (شبیه سازی پنل) */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px 0;
+            font-size: 28px;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .feature-list {
+            text-align: right;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            background: #e9f5ff;
+            border-right: 5px solid #007bff;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    به سایت رسمی mta_3ds خوش آمدید
-</header>
+    <!-- بخش 1: هدر و منوی ناوبری (شبیه سازی ثبت نام و پنل کاربری) -->
+    <header>
+        <div class="logo">
+            <a href="#">پلتفرم من</a>
+        </div>
+        <!-- این بخش متغیر است: اگر کاربر لاگین کرده باشد یا نه -->
+        <nav>
+            <!-- حالت: کاربر خارج از سیستم (Logged Out) -->
+            <span id="logged-out-nav">
+                <a href="#about">درباره ما</a>
+                <a href="#models">مدل‌ها</a>
+                <a href="/register">ثبت نام</a>
+                <a href="/login">ورود</a>
+            </span>
 
-<nav>
-    <a href="#">صفحه اصلی</a>
-    <a href="#">مدل‌ها</a>
-    <a href="#">درباره ما</a>
-    <a href="#">تماس با ما</a>
-</nav>
+𝐻𝒶𝓂𝒾𝒹, [12/08/1404 11:38 ب.ظ]
+<!-- حالت: کاربر وارد سیستم شده (Logged In) - فعلاً برای نمایش است -->
+            <span id="logged-in-nav" style="display:none;">
+                <a href="/dashboard">پنل کاربری</a>
+                <a href="/orders">سفارشات</a>
+                <a href="/downloads">دانلودها</a>
+                <a href="/support">پشتیبانی</a>
+                <a href="/logout" style="color: red;">خروج</a>
+            </span>
+        </nav>
+    </header>
 
-<div class="container">
-    <div class="card">
-        <model-viewer src="models/car.glb" alt="مدل ماشین" auto-rotate camera-controls></model-viewer>
-        <div class="card-info">
-            <h3>مدل استدیو موسیقی</h3>
-            <p>مدل مخصوص برای MTA با کیفیت بالا</p>
-            <a class="btn" href="models/car.glb" download>دانلود مدل</a>
+    <div class="container">
+
+        <!-- نمایش بخش‌های پنل کاربری به عنوان لینک‌های اصلی -->
+        <h2 class="section-title">دسترسی سریع به امکانات حرفه‌ای</h2>
+        <ul class="feature-list">
+            <li>🚀 پنل کاربری: مدیریت پروفایل، تنظیمات و تاریخچه فعالیت.</li>
+            <li>🛒 سفارشات: مشاهده وضعیت لحظه‌ای سفارشات ثبت شده.</li>
+            <li>⬇️ دانلودها: دسترسی به محتواهای خریداری شده یا رایگان.</li>
+            <li>💬 پشتیبانی: ارسال تیکت و پیگیری مشکلات از طریق سیستم تیکتینگ.</li>
+        </ul>
+
+
+        <!-- بخش 2: نمایش مدل‌ها با عکس ثابت بالا -->
+        <h2 class="section-title">مدل‌های سه‌بعدی</h2>
+        <div class="cards-container">
+            
+            <!-- کارت اول -->
+            <div class="card">
+                <!-- 1. عکس ثابت (تگ جدید اضافه شده) -->
+                <img src="https://via.placeholder.com/400x200?text=عکس+محصول+اول" 
+                     alt="پیش نمایش محصول اول" 
+                     class="card-image-top">
+                
+                <!-- 2. تگ Model-Viewer -->
+                <model-viewer 
+                    src="models/your_model_1.glb" 
+                    alt="مدل سه‌بعدی محصول اول" 
+                    shadow-intensity="1" 
+                    camera-controls 
+                    auto-rotate>
+                </model-viewer>
+
+                <div class="card-content">
+                    <h3>مدل پیشرفته A</h3>
+                    <p>توضیحات کوتاه در مورد مدل اول و ویژگی‌های آن.</p>
+                    <!-- دکمه سفارش یا مشاهده جزئیات -->
+                </div>
+            </div>
+
+            <!-- کارت دوم -->
+            <div class="card">
+                <!-- 1. عکس ثابت (تگ جدید اضافه شده) -->
+                <img src="https://via.placeholder.com/400x200?text=عکس+محصول+دوم" 
+                     alt="پیش نمایش محصول دوم" 
+                     class="card-image-top">
+                
+                <!-- 2. تگ Model-Viewer -->
+                <model-viewer 
+                    src="models/your_model_2.glb" 
+                    alt="مدل سه‌بعدی محصول دوم" 
+                    shadow-intensity="1" 
+                    camera-controls 
+                    auto-rotate>
+                </model-viewer>
+
+                <div class="card-content">
+                    <h3>مدل استاندارد B</h3>
+                    <p>توضیحات کوتاه در مورد مدل دوم و کاربردهای آن.</p>
+                    <!-- دکمه سفارش یا مشاهده جزئیات -->
+                </div>
+            </div>
+
+            <!-- کارت سوم -->
+            <div class="card">
+                <!-- 1. عکس ثابت (تگ جدید اضافه شده) -->
+                <img src="https://via.placeholder.com/400x200?text=عکس+محصول+سوم" 
+                     alt="پیش نمایش محصول سوم" 
+                     class="card-image-top">
+                
+                <!-- 2. تگ Model-Viewer -->
+                <model-viewer 
+                    src="models/your_model_3.glb" 
+                    alt="مدل سه‌بعدی محصول سوم" 
+                    shadow-intensity="1" 
+                    camera-controls 
+                    auto-rotate>
+                </model-viewer>
+
+                <div class="card-content">
+                    <h3>مدل اقتصادی C</h3>
+                    <p>توضیحات کوتاه در مورد مدل سوم و ویژگی‌های اقتصادی.</p>
+                    <!-- دکمه سفارش یا مشاهده جزئیات -->
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="card">
-        <model-viewer src="models/house.glb" alt="مدل خانه" auto-rotate camera-controls></model-viewer>
-        <div class="card-info">
-            <h3>خانه لوکس و مدرن</h3>
-            <p>مدل سه‌بعدی برای ام تی ای</p>
-            <a class="btn" href="models/house.glb" download>دانلود مدل</a>
-        </div>
-    </div>
+𝐻𝒶𝓂𝒾𝒹, [12/08/1404 11:38 ب.ظ]
+<!-- در صورت نیاز به اسکریپت برای تغییر منو بر اساس وضعیت لاگین -->
+    <script>
+        // در دنیای واقعی، این وضعیت توسط بک‌اند (مثلاً با کوکی یا JWT) مشخص می‌شود.
+        // اینجا فقط برای نمایش است.
+        const isLoggedIn = false; // 'true' اگر کاربر لاگین کرده باشد
 
-    <div class="card">
-        <model-viewer src="models/motor.glb" alt="مدل اداره پلیس" auto-rotate camera-controls></model-viewer>
-        <div class="card-info">
-            <h3>مدل  نمای داخل اداره پلیس </h3>
-            <p>بدون هیچ باگی طراحی جذاب و شیک</p>
-            <a class="btn" href="models/motor.glb" download>دانلود مدل</a>
-        </div>
-    </div>
-</div>
+        const loggedOutNav = document.getElementById('logged-out-nav');
+        const loggedInNav = document.getElementById('logged-in-nav');
 
-<footer>
-    © طراحی شده توسط حمید حیدرزاده
-</footer>
-
-<!-- اضافه کردن مدل‌ویوئر برای نمایش سه‌بعدی -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+        if (isLoggedIn) {
+            loggedOutNav.style.display = 'none';
+            loggedInNav.style.display = 'inline';
+        } else {
+            loggedOutNav.style.display = 'inline';
+            loggedInNav.style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
-
