@@ -1,83 +1,153 @@
+𝐻𝒶𝓂𝒾𝒹, [13/08/1404 12:06 ق.ظ]
+html_content = """
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کارت محصول نمونه</title>
+    <title>شبیه‌سازی سایت خدمات</title>
     <style>
         body {
             font-family: Tahoma, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
-        }
-        .product-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        .card-image-top {
-            width: 100%;
-            height: 200px;
-            object-fit: cover; /* تضمین می‌کند تصویر فضای مشخص شده را پر کند */
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-        }
-        .card-body {
-            padding: 20px;
-        }
-        .card-title {
-            font-size: 1.4em;
+            padding: 0;
+            direction: rtl;
+            text-align: right;
+            background-color: #f8f9fa;
             color: #333;
-            margin-bottom: 10px;
-            text-align: right;
         }
-        .card-text {
-            font-size: 0.9em;
-            color: #666;
-            line-height: 1.6;
-            text-align: right;
+        .header {
+            background-color: #0056b3; /* آبی تیره برای شبیه سازی هدر اصلی */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .price {
-            font-size: 1.3em;
-            color: #e91e63;
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
             font-weight: bold;
-            margin-top: 15px;
-            display: block;
-            text-align: right;
+        }
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .nav ul li {
+            margin-right: 20px;
+        }
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav ul li a:hover {
+            color: #ffd700; /* زرد/طلایی برای تأکید */
+        }
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero-section {
+            background-color: #e9ecef;
+            padding: 60px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .hero-section h1 {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .service-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-right: 5px solid #28a745; /* سبز برای تأکید */
+        }
+        .service-box h3 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <div class="product-card">
-        <!-- 
-            توجه: مسیر 'src' باید به محل قرارگیری فایل تصویری شما اشاره کند.
-            این مسیر فرض می‌کند که تصویر در کنار این فایل HTML قرار دارد.
-        -->
-        <img 
-            class="card-image-top" 
-            src="image_gen_6571e748-fc08-47c2-a5cf-4a9a05bc17e5_0.png" 
-            alt="تصویر آپلود شده توسط کاربر"
-        >
-        <div class="card-body">
-            <h5 class="card-title">عنوان محصول فرضی</h5>
-            <p class="card-text">
-                این توضیحات نمونه‌ای است که با استفاده از فایل تصویری که آپلود کردید، ساخته شده است.
-                هنگام استفاده در GitHub، حتماً فایل تصویر را نیز به پوشه مناسب اضافه کنید.
-            </p>
-            <span class="price">۴۵۰,۰۰۰ تومان</span>
+    <header class="header">
+        <div class="logo">
+            <a href="#">نام شرکت/سرویس (لوگو)</a>
         </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">صفحه اصلی</a></li>
+                <li><a href="#">خدمات</a></li>
+                <li><a href="#">تماس با ما</a></li>
+                <li><a href="#">ورود / ثبت نام</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        
+        <section class="hero-section">
+            <h1>بهترین راهکار برای نیازهای شما</h1>
+            <p>ارائه خدمات سریع، مطمئن و با کیفیت با تمرکز بر پشتیبانی مشتریان.</p>
+            <a href="#" style="background-color: #ffc107; color: #333; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; display: inline-block; font-weight: bold;">شروع کنید</a>
+        </section>
+
+        <section class="services">
+            <h2>خدمات اصلی ما</h2>
+            <div class="service-grid">
+                <div class="service-box">
+                    <h3>سرویس اول</h3>
+                    <p>شرح مختصری از اولین سرویس اصلی ارائه شده در سایت با تأکید بر مزایای آن.</p>
+                </div>
+                <div class="service-box">
+                    <h3>سرویس دوم</h3>
+                    <p>شرح مختصری از دومین سرویس مهم که به کاربران کمک می‌کند.</p>
+                </div>
+                <div class="service-box">
+                    <h3>سرویس سوم</h3>
+                    <p>شرح مختصری از سومین سرویس که ممکن است بخش‌های پشتیبانی یا اطلاعاتی را پوشش دهد.</p>
+                </div>
+            </div>
+        </section>
+        
     </div>
+
+𝐻𝒶𝓂𝒾𝒹, [13/08/1404 12:06 ق.ظ]
+<footer class="footer">
+        <p>&copy; 2025 نام شرکت. تمامی حقوق محفوظ است.</p>
+        <p>طراحی شده با الهام از ساختارهای خدمات آنلاین.</p>
+    </footer>
 
 </body>
 </html>
+"""
+
+file_path = "/mnt/data/simulated_site.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Output: فایل HTML با موفقیت در {file_path} ساخته شد.")
+print("\\nTo help user access the file results, include the file path in the output like sandbox:/mnt/data/...")
+print("For images you can output them in markdown like ![alt text][sandbox:/mnt/data/...] (don't forget the exclamation mark)")
+print("\\nThe run has generated files, do not run the code interpreter tool again, use the files instead.")
