@@ -387,38 +387,50 @@
     const span = document.getElementsByClassName("close-button")[0];
     const successMessage = document.getElementById("success-message");
     const form = document.getElementById("registration-form");
-    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+    const openBtns = document.querySelectorAll(".open-modal-btn");
 
     openBtns.forEach(btn => {
-        btn.onclick = function() {
+        btn.onclick = function () {
+            const mode = btn.getAttribute("data-mode");
             modal.style.display = "block";
             form.style.display = "block";
             successMessage.style.display = "none";
             form.reset();
-        }
+
+            const emailField = document.querySelector("input[type='email']").parentElement;
+            const phoneField = document.querySelector("input[type='tel']").parentElement;
+
+            if (mode === "login") {
+                emailField.style.display = "none";
+                phoneField.style.display = "none";
+            } else {
+                emailField.style.display = "block";
+                phoneField.style.display = "block";
+            }
+        };
     });
 
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
 
-    form.onsubmit = function(event) {
+    form.onsubmit = function (event) {
         event.preventDefault();
 
         form.style.display = "none";
         successMessage.style.display = "block";
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.body.style.transition = "opacity 1s ease";
             document.body.style.opacity = "0";
 
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "download.html";
             }, 1000);
         }, 1000);
@@ -428,8 +440,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
