@@ -436,13 +436,27 @@
             }, 1000);
         }, 1000);
     }
+
+    // ✅ اضافه شدن کنترل پنل سمت راست
+    const sideToggle = document.getElementById("side-toggle");
+    const sidePanel = document.getElementById("side-panel");
+
+    sideToggle.onclick = function () {
+        if (sidePanel.style.right === "0px") {
+            sidePanel.style.right = "-250px";
+        } else {
+            sidePanel.style.right = "0px";
+        }
+    };
 </script>
+
 
 
 
 
 </body>
 </html>
+
 
 
 
