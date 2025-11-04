@@ -163,13 +163,23 @@
     }, 1000);
   });
 
-  // ✅ افزودن به سبد خرید و نمایش پیام
+  // ✅ افزودن به سبد خرید و ذخیره مدل در localStorage
   const buyButtons = document.querySelectorAll(".buy-btn");
   const cartMessage = document.getElementById("cart-message");
 
   buyButtons.forEach(btn => {
     btn.addEventListener("click", function(e) {
       e.preventDefault();
+
+      // گرفتن اطلاعات مدل
+      const card = btn.closest(".model-card");
+      const imgSrc = card.querySelector("img").src;
+      const title = card.querySelector("h3").innerText;
+
+      // ذخیره در localStorage
+      const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      cartItems.push({ title, imgSrc });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
       // نمایش پیام موفقیت
       cartMessage.style.display = "block";
@@ -193,7 +203,9 @@
 </script>
 
 
+
 </body>
 </html>
+
 
 
