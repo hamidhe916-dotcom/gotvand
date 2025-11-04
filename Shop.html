@@ -435,6 +435,7 @@
   // دکمه سبد خرید
   buyBtn.onclick = function (e) {
     e.preventDefault();
+    e.stopPropagation(); // جلوگیری از باز شدن پنل
     modal.style.display = "block";
     form.style.display = "block";
     loginForm.style.display = "none";
@@ -445,6 +446,7 @@
   // دکمه خرید مدل
   loginBtn.onclick = function (e) {
     e.preventDefault();
+    e.stopPropagation(); // جلوگیری از باز شدن پنل
     modal.style.display = "block";
     form.style.display = "none";
     loginForm.style.display = "block";
@@ -508,6 +510,19 @@
     });
   }
 
+  // انتقال به تلگرام با افکت محو شدن
+  const telegramBtn = document.querySelector('.nav-links a:nth-child(4)');
+  if (telegramBtn) {
+    telegramBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "https://t.me/Hamid_ngsa";
+      }, 1000);
+    });
+  }
+
   // پنل سمت راست فقط با دکمه ☰ فعال می‌شود
   const sideToggle = document.getElementById("side-toggle");
   const sidePanel = document.getElementById("side-panel");
@@ -532,8 +547,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
