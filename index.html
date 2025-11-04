@@ -397,121 +397,160 @@
     </div>
 
 <script>
-    const modal = document.getElementById("registrationModal");
-    const span = document.getElementsByClassName("close-button")[0];
-    const successMessage = document.getElementById("success-message");
-    const form = document.getElementById("registration-form");
-    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
-    const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
+  const modal = document.getElementById("registrationModal");
+  const span = document.getElementsByClassName("close-button")[0];
+  const successMessage = document.getElementById("success-message");
+  const form = document.getElementById("registration-form");
+  const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+  const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
 
-    // فرم ورود را ایجاد و به مودال اضافه کن
-    const loginForm = document.createElement("form");
-    loginForm.id = "login-form";
+  // فرم ورود را ایجاد و به مودال اضافه کن
+  const loginForm = document.createElement("form");
+  loginForm.id = "login-form";
+  loginForm.style.display = "none";
+  loginForm.innerHTML = `
+    <div class="form-group">
+      <label for="login-username">نام کاربری:</label>
+      <input type="text" id="login-username" name="login-username" required>
+    </div>
+    <div class="form-group">
+      <label for="login-password">رمز عبور:</label>
+      <input type="password" id="login-password" name="login-password" required>
+    </div>
+    <button type="submit" style="
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    ">ورود</button>
+  `;
+  document.querySelector(".modal-content").appendChild(loginForm);
+
+  openBtns.forEach(btn => {
+    btn.onclick = function () {
+      modal.style.display = "block";
+      form.style.display = "block";
+      loginForm.style.display = "none";
+      successMessage.style.display = "none";
+      form.reset();
+    };
+  });
+
+  loginBtn.onclick = function () {
+    modal.style.display = "block";
+    form.style.display = "none";
+    loginForm.style.display = "block";
+    successMessage.style.display = "none";
+    loginForm.reset();
+  };
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  form.onsubmit = function (event) {
+    event.preventDefault();
+    form.style.display = "none";
+    successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
+    successMessage.style.display = "block";
+
+    const signupBtn = document.getElementById("open-modal-btn-hero");
+    if (signupBtn) {
+      signupBtn.remove();
+    }
+
+    setTimeout(function () {
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 1000);
+    }, 1000);
+  };
+
+  loginForm.onsubmit = function (event) {
+    event.preventDefault();
     loginForm.style.display = "none";
-    loginForm.innerHTML = `
-      <div class="form-group">
-        <label for="login-username">نام کاربری:</label>
-        <input type="text" id="login-username" name="login-username" required>
-      </div>
-      <div class="form-group">
-        <label for="login-password">رمز عبور:</label>
-        <input type="password" id="login-password" name="login-password" required>
-      </div>
-      <button type="submit" style="
-        width: 100%;
-        padding: 12px;
-        background-color: var(--accent-color);
-        color: var(--primary-color);
-        border: none;
-        border-radius: 5px;
-        font-size: 1.1em;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-weight: bold;
-      ">ورود</button>
-    `;
-    document.querySelector(".modal-content").appendChild(loginForm);
+    successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
+    successMessage.style.display = "block";
 
-    openBtns.forEach(btn => {
-        btn.onclick = function() {
-            modal.style.display = "block";
-            form.style.display = "block";
-            loginForm.style.display = "none";
-            successMessage.style.display = "none";
-            form.reset();
-        }
-    });
+    setTimeout(function () {
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "Shop.html";
+      }, 1000);
+    }, 1000);
+  };
 
-    loginBtn.onclick = function () {
-        modal.style.display = "block";
-        form.style.display = "none";
-        loginForm.style.display = "block";
-        successMessage.style.display = "none";
-        loginForm.reset();
-    };
+  // ✅ کنترل پنل سمت راست
+  const sideToggle = document.getElementById("side-toggle");
+  const sidePanel = document.getElementById("side-panel");
+  const panelContent = document.getElementById("panel-content");
+  const profileBtn = document.getElementById("profile-btn");
+  const ordersBtn = document.getElementById("orders-btn");
+  const exitBtn = document.getElementById("exit-btn");
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    form.onsubmit = function(event) {
-        event.preventDefault();
-
-        form.style.display = "none";
-        successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
-        successMessage.style.display = "block";
-
-        // حذف دکمه ثبت‌نام بعد از ثبت موفق
-        const signupBtn = document.getElementById("open-modal-btn-hero");
-        if (signupBtn) {
-            signupBtn.remove();
-        }
-
-        setTimeout(function() {
-            document.body.style.transition = "opacity 1s ease";
-            document.body.style.opacity = "0";
-
-            setTimeout(function() {
-                window.location.href = "index.html";
-            }, 1000);
-        }, 1000);
-    }
-
-    loginForm.onsubmit = function(event) {
-        event.preventDefault();
-
-        loginForm.style.display = "none";
-        successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
-        successMessage.style.display = "block";
-
-        setTimeout(function() {
-            document.body.style.transition = "opacity 1s ease";
-            document.body.style.opacity = "0";
-
-            setTimeout(function() {
-                window.location.href = "Shop.html";
-            }, 1000);
-        }, 1000);
-    }
-
-    // ✅ اضافه شدن کنترل پنل سمت راست
-    const sideToggle = document.getElementById("side-toggle");
-    const sidePanel = document.getElementById("side-panel");
-
+  if (sideToggle && sidePanel) {
     sideToggle.onclick = function () {
-        if (sidePanel.style.right === "0px") {
-            sidePanel.style.right = "-250px";
-        } else {
-            sidePanel.style.right = "0px";
-        }
+      sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
     };
+  }
+
+  if (profileBtn && panelContent) {
+    profileBtn.onclick = function (e) {
+      e.preventDefault();
+      panelContent.innerHTML = `
+        <h3 style="color: var(--accent-color); margin-bottom: 10px;">اطلاعات کاربر</h3>
+        <p>نام: حمید حیدرزاده</p>
+        <p>ایمیل: hamid@example.com</p>
+        <p>شماره: 0912xxxxxxx</p>
+      `;
+    };
+  }
+
+  if (ordersBtn && panelContent) {
+    ordersBtn.onclick = function (e) {
+      e.preventDefault();
+      const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+      if (cartItems.length === 0) {
+        panelContent.innerHTML = "<p>سفارشی ندارید ❌</p>";
+      } else {
+        let html = "<h3 style='color: var(--accent-color); margin-bottom: 10px;'>سفارشات شما</h3>";
+        cartItems.forEach(item => {
+          html += `
+            <div style="margin-bottom: 15px; border-bottom: 1px dashed #888; padding-bottom: 10px;">
+              <img src="${item.imgSrc}" style="width:100%; max-height:120px; object-fit:cover; border-radius:6px; margin-bottom:5px;">
+              <p>${item.title}</p>
+            </div>
+          `;
+        });
+        panelContent.innerHTML = html;
+      }
+    };
+  }
+
+  if (exitBtn) {
+    exitBtn.onclick = function (e) {
+      e.preventDefault();
+      window.open('', '_self').close();
+    };
+  }
 </script>
+
 
 
 
@@ -526,6 +565,7 @@
 
 </body>
 </html>
+
 
 
 
