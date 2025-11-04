@@ -418,7 +418,18 @@
       <label for="login-password">رمز عبور:</label>
       <input type="password" id="login-password" name="login-password" required>
     </div>
-    <button type="submit">ورود</button>
+    <button type="submit" style="
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    ">ورود</button>
   `;
   document.querySelector(".modal-content").appendChild(loginForm);
 
@@ -504,8 +515,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
