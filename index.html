@@ -18,6 +18,7 @@
       color: var(--secondary-text);
       margin: 0;
       padding: 0;
+      transition: opacity 1s ease;
     }
 
     .container {
@@ -104,7 +105,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+    <a href="#" class="back-btn" id="backToMain">⬅️ برگشت به صفحه اصلی</a>
     <h1>مدل‌های آماده برای دانلود</h1>
     <div class="card-grid">
       <div class="game-card">
@@ -129,5 +130,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const backBtn = document.getElementById("backToMain");
+    backBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      document.body.style.opacity = "0";
+      setTimeout(function() {
+        window.location.href = "index.html";
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
