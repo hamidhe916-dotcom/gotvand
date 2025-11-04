@@ -283,6 +283,7 @@
     const modal = document.getElementById("registrationModal");
     const cartPanel = document.getElementById("cart-panel");
     const closeCartPanel = document.getElementById("close-cart-panel");
+    const cartList = document.getElementById("cart-list");
     const successMessage = document.getElementById("success-message");
     const form = document.getElementById("registration-form");
 
@@ -295,10 +296,9 @@
     const span = document.querySelector(".close-button");
 
     // ✅ نمایش آیتم‌های سبد خرید از localStorage
-    const cartList = document.getElementById("cart-list");
-    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
     if (cartList) {
+      const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
       if (cartItems.length === 0) {
         cartList.innerHTML = "<p style='color:white;'>سبد خرید شما خالی است.</p>";
       } else {
@@ -404,6 +404,7 @@
     }
   };
 </script>
+
 
 
 </head>
@@ -570,6 +571,7 @@
 
 </body>
 </html>
+
 
 
 
