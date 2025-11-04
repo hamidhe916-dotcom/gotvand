@@ -395,142 +395,33 @@
         </form>
       </div>
     </div>
-<script>
-  const modal = document.getElementById("registrationModal");
-  const cartModal = document.getElementById("cartModal");
-  const span = document.getElementsByClassName("close-button")[0];
-  const closeCart = document.querySelector(".close-cart");
-  const closeCartBtn = document.getElementById("closeCartBtn");
-  const successMessage = document.getElementById("success-message");
-  const form = document.getElementById("registration-form");
-  const buyBtn = document.getElementById("open-modal-btn-hero");
-  const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
-  const homeBtn = document.getElementById("go-home");
-  const telegramBtn = document.querySelector('.nav-links a:nth-child(4)');
-  const sideToggle = document.getElementById("side-toggle");
-  const sidePanel = document.getElementById("side-panel");
+<!-- ✅ پنل سبد خرید -->
+<div id="cart-panel" style="
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--card-bg);
+  border-top: 2px solid var(--accent-color);
+  padding: 30px;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
+  z-index: 9999;
+  text-align: center;
+">
+  <h2 style="color: var(--accent-color); font-size: 1.6em; margin-bottom: 20px;">لیست سفارشات شما</h2>
+  <button id="close-cart-panel" style="
+    padding: 10px 25px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+  ">بستن</button>
+</div>
 
-  // فرم ورود را ایجاد و به مودال اضافه کن
-  const loginForm = document.createElement("form");
-  loginForm.id = "login-form";
-  loginForm.style.display = "none";
-  loginForm.innerHTML = `
-    <div class="form-group">
-      <label for="login-username">نام کاربری:</label>
-      <input type="text" id="login-username" name="login-username" required>
-    </div>
-    <div class="form-group">
-      <label for="login-password">رمز عبور:</label>
-      <input type="password" id="login-password" name="login-password" required>
-    </div>
-    <button type="submit" style="
-      width: 100%;
-      padding: 12px;
-      background-color: var(--accent-color);
-      color: var(--primary-color);
-      border: none;
-      border-radius: 5px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-weight: bold;
-    ">ورود</button>
-  `;
-  document.querySelector(".modal-content").appendChild(loginForm);
-
-  // دکمه سبد خرید → نمایش مودال سبد خرید
-  buyBtn.onclick = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    cartModal.style.display = "block";
-  };
-
-  // دکمه خرید مدل → انتقال مستقیم
-  loginBtn.onclick = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.body.style.transition = "opacity 1s ease";
-    document.body.style.opacity = "0";
-    setTimeout(function () {
-      window.location.href = "download.html";
-    }, 1000);
-  };
-
-  // بستن مودال ثبت‌نام
-  span.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  // بستن مودال سبد خرید
-  if (closeCart && closeCartBtn) {
-    closeCart.onclick = function () {
-      cartModal.style.display = "none";
-    };
-    closeCartBtn.onclick = function () {
-      cartModal.style.display = "none";
-    };
-  }
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-    if (event.target == cartModal) {
-      cartModal.style.display = "none";
-    }
-  };
-
-  // ثبت‌نام
-  form.onsubmit = function (event) {
-    event.preventDefault();
-    form.style.display = "none";
-    successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
-    successMessage.style.display = "block";
-
-    setTimeout(function () {
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "download.html";
-      }, 1000);
-    }, 1000);
-  };
-
-  // انتقال به صفحه index.html با افکت محو شدن
-  if (homeBtn) {
-    homeBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "index.html";
-      }, 1000);
-    });
-  }
-
-  // انتقال به تلگرام با افکت محو شدن
-  if (telegramBtn) {
-    telegramBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "https://t.me/Hamid_ngsa";
-      }, 1000);
-    });
-  }
-
-  // دکمه ☰ برای باز و بسته کردن پنل سمت راست
-  if (sideToggle && sidePanel) {
-    sideToggle.addEventListener("click", function () {
-      if (sidePanel.style.right === "0px") {
-        sidePanel.style.right = "-250px";
-      } else {
-        sidePanel.style.right = "0px";
-      }
-    });
-  }
-</script>
 
 
 
@@ -552,6 +443,7 @@
 
 </body>
 </html>
+
 
 
 
