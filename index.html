@@ -397,59 +397,106 @@
     </div>
 
 <script>
-    const modal = document.getElementById("registrationModal");
-    const span = document.getElementsByClassName("close-button")[0];
-    const successMessage = document.getElementById("success-message");
-    const form = document.getElementById("registration-form");
-    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+  const modal = document.getElementById("registrationModal");
+  const span = document.getElementsByClassName("close-button")[0];
+  const successMessage = document.getElementById("success-message");
+  const form = document.getElementById("registration-form");
+  const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+  const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
 
-    openBtns.forEach(btn => {
-        btn.onclick = function() {
-            modal.style.display = "block";
-            form.style.display = "block";
-            successMessage.style.display = "none";
-            form.reset();
-        }
-    });
+  // فرم ورود را ایجاد و به مودال اضافه کن
+  const loginForm = document.createElement("form");
+  loginForm.id = "login-form";
+  loginForm.style.display = "none";
+  loginForm.innerHTML = `
+    <div class="form-group">
+      <label for="login-username">نام کاربری:</label>
+      <input type="text" id="login-username" name="login-username" required>
+    </div>
+    <div class="form-group">
+      <label for="login-password">رمز عبور:</label>
+      <input type="password" id="login-password" name="login-password" required>
+    </div>
+    <button type="submit">ورود</button>
+  `;
+  document.querySelector(".modal-content").appendChild(loginForm);
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    form.onsubmit = function(event) {
-        event.preventDefault();
-
-        form.style.display = "none";
-        successMessage.style.display = "block";
-
-        setTimeout(function() {
-            document.body.style.transition = "opacity 1s ease";
-            document.body.style.opacity = "0";
-
-            setTimeout(function() {
-                window.location.href = "download.html";
-            }, 1000);
-        }, 1000);
-    }
-
-    // ✅ اضافه شدن کنترل پنل سمت راست
-    const sideToggle = document.getElementById("side-toggle");
-    const sidePanel = document.getElementById("side-panel");
-
-    sideToggle.onclick = function () {
-        if (sidePanel.style.right === "0px") {
-            sidePanel.style.right = "-250px";
-        } else {
-            sidePanel.style.right = "0px";
-        }
+  // دکمه‌های ثبت‌نام
+  openBtns.forEach(btn => {
+    btn.onclick = function () {
+      modal.style.display = "block";
+      form.style.display = "block";
+      loginForm.style.display = "none";
+      successMessage.style.display = "none";
+      form.reset();
     };
+  });
+
+  // دکمه ورود
+  loginBtn.onclick = function () {
+    modal.style.display = "block";
+    form.style.display = "none";
+    loginForm.style.display = "block";
+    successMessage.style.display = "none";
+    loginForm.reset();
+  };
+
+  // بستن مودال
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // ثبت‌نام
+  form.onsubmit = function (event) {
+    event.preventDefault();
+    form.style.display = "none";
+    successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
+    successMessage.style.display = "block";
+
+    setTimeout(function () {
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "download.html";
+      }, 1000);
+    }, 1000);
+  };
+
+  // ورود
+  loginForm.onsubmit = function (event) {
+    event.preventDefault();
+    loginForm.style.display = "none";
+    successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
+    successMessage.style.display = "block";
+
+    setTimeout(function () {
+      document.body.style.transition = "opacity 1s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function () {
+        window.location.href = "download.html";
+      }, 1000);
+    }, 1000);
+  };
+
+  // پنل سمت راست
+  const sideToggle = document.getElementById("side-toggle");
+  const sidePanel = document.getElementById("side-panel");
+
+  sideToggle.onclick = function () {
+    if (sidePanel.style.right === "0px") {
+      sidePanel.style.right = "-250px";
+    } else {
+      sidePanel.style.right = "0px";
+    }
+  };
 </script>
+
 
 
 
@@ -458,6 +505,7 @@
 
 </body>
 </html>
+
 
 
 
