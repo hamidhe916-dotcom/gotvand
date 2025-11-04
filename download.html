@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدل‌های آماده | MTA_3DS</title>
+  <style>
+    :root {
+      --primary-color: #1a1a2e;
+      --accent-color: #00f0ff;
+      --secondary-text: #cccccc;
+      --card-bg: #252540;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--secondary-text);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .model-card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 10px;
+      padding: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+    }
+
+    .model-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .model-card h3 {
+      color: var(--accent-color);
+      font-size: 1.5em;
+      margin-top: 0;
+      border-bottom: 1px dashed rgba(224, 224, 224, 0.1);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      transition: background-color 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="MTA.html" class="back-btn">⬅️ برگشت به صفحه اصلی</a>
+    <h1>مدل‌های آماده برای مشاهده</h1>
+    <div class="card-grid">
+      <div class="model-card">
+        <img src="https://picsum.photos/300/200?random=201" alt="Model 1">
+        <h3>ماشین کلاسیک</h3>
+      </div>
+      <div class="model-card">
+        <img src="https://picsum.photos/300/200?random=202" alt="Model 2">
+        <h3>ساختمان شهری</h3>
+      </div>
+      <div class="model-card">
+        <img src="https://picsum.photos/300/200?random=203" alt="Model 3">
+        <h3>اسلحه تاکتیکال</h3>
+      </div>
+      <div class="model-card">
+        <img src="https://picsum.photos/300/200?random=204" alt="Model 4">
+        <h3>کاراکتر گیم</h3>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
