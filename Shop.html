@@ -294,6 +294,32 @@
     const sidePanel = document.getElementById("side-panel");
     const span = document.querySelector(".close-button");
 
+    // ✅ نمایش آیتم‌های سبد خرید از localStorage
+    const cartList = document.getElementById("cart-list");
+    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+    if (cartList) {
+      if (cartItems.length === 0) {
+        cartList.innerHTML = "<p style='color:white;'>سبد خرید شما خالی است.</p>";
+      } else {
+        cartItems.forEach(item => {
+          const card = document.createElement("div");
+          card.style.background = "#1a1a2e";
+          card.style.border = "1px solid rgba(0,240,255,0.2)";
+          card.style.borderRadius = "10px";
+          card.style.padding = "15px";
+          card.style.width = "200px";
+          card.style.textAlign = "center";
+
+          card.innerHTML = `
+            <img src="${item.imgSrc}" style="width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
+            <h3 style="color:var(--accent-color); font-size:1em;">${item.title}</h3>
+          `;
+          cartList.appendChild(card);
+        });
+      }
+    }
+
     // دکمه ☰ برای باز و بسته کردن پنل سمت راست
     if (sideToggle && sidePanel) {
       sideToggle.addEventListener("click", function () {
@@ -378,6 +404,7 @@
     }
   };
 </script>
+
 
 </head>
 <body>
@@ -543,6 +570,7 @@
 
 </body>
 </html>
+
 
 
 
