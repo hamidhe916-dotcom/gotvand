@@ -104,6 +104,7 @@
       background-color: white;
     }
 
+    /* ✅ پیام سبد خرید */
     #cart-message {
       display: none;
       position: fixed;
@@ -118,35 +119,6 @@
       box-shadow: 0 0 15px rgba(0,255,170,0.4);
       z-index: 9999;
       transition: opacity 0.5s ease;
-    }
-
-    #thank-you-message {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--card-bg);
-      color: var(--accent-color);
-      padding: 25px 40px;
-      border-radius: 10px;
-      font-size: 1.4em;
-      font-weight: bold;
-      box-shadow: 0 0 25px rgba(255, 192, 5, 0.4);
-      z-index: 9999;
-      text-align: center;
-      animation: fadeInScale 0.4s ease;
-    }
-
-    @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.9) translate(-50%, -50%);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translate(-50%, -50%);
-      }
     }
   </style>
 </head>
@@ -178,34 +150,45 @@
     </div>
   </div>
 
+  <!-- ✅ پیام سبد خرید -->
   <div id="cart-message">سفارش شما به سبد خرید اضافه شد ✅</div>
 
-  <div id="cart-panel" style="display: none; position: fixed; bottom: 0; right: 0; width: 100%; background-color: var(--card-bg); border-top: 2px solid var(--accent-color); padding: 20px; box-shadow: 0 -5px 15px rgba(0,0,0,0.4); z-index: 9998;">
-    <h2 style="color: var(--accent-color); text-align: center; margin-bottom: 20px;">سبد خرید</h2>
-    <div style="display: flex; justify-content: center; gap: 20px;">
-      <a href="#" style="background-color: var(--accent-color); color: var(--primary-color); padding: 12px 25px; border-radius: 6px; font-weight: bold; text-decoration: none;">لیست خریدها</a>
-      <a id="checkout-btn" href="#" style="background-color: var(--accent-color); color: var(--primary-color); padding: 12px 25px; border-radius: 6px; font-weight: bold; text-decoration: none;">تسویه حساب</a>
-    </div>
-  </div>
+<script>
+  const backBtn = document.querySelector(".back-btn");
+  backBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function() {
+      window.location.href = "index.html";
+    }, 1000);
+  });
 
-  <div id="thank-you-message">با تشکر از خرید شما 🙏</div>
+  // ✅ اسکریپت نمایش پیام سبد خرید و پنل
+  const buyButtons = document.querySelectorAll(".buy-btn");
+  const cartMessage = document.getElementById("cart-message");
+  const cartPanel = document.getElementById("cart-panel"); // پنل جدید
 
-  <script>
-    const backBtn = document.querySelector(".back-btn");
-    backBtn.addEventListener("click", function(e) {
+  buyButtons.forEach(btn => {
+    btn.addEventListener("click", function(e) {
       e.preventDefault();
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function() {
-        window.location.href = "index.html";
-      }, 1000);
+
+      // نمایش پیام
+      cartMessage.style.display = "block";
+      cartMessage.style.opacity = "1";
+
+      setTimeout(() => {
+        cartMessage.style.opacity = "0";
+        setTimeout(() => {
+          cartMessage.style.display = "none";
+        }, 500);
+      }, 2000);
+
+      // نمایش پنل سبد خرید
+      cartPanel.style.display = "block";
     });
+  });
+</script>
 
-    const buyButtons = document.querySelectorAll(".buy-btn");
-    const cartMessage = document.getElementById("cart-message");
-    const cartPanel = document.getElementById("cart-panel");
-
-    buyButtons.forEach(btn => {
-      btn
-        </body>
-        </html>
+</body>
+</html>
