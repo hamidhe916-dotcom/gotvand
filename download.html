@@ -199,7 +199,23 @@
       cartPanel.style.display = "block";
     });
   });
+
+  // ✅ عملکرد دکمه تسویه حساب
+  const checkoutBtn = document.querySelector('#cart-panel a:last-child');
+
+  checkoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    alert("برای نهایی کردن خرید، لطفاً به این آیدی در تلگرام پیام دهید:\n@Hamid_ngds");
+
+    document.body.style.transition = "opacity 1s ease";
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  });
 </script>
+
 
 </body>
 </html>
