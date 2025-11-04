@@ -549,6 +549,12 @@
     if (exitBtn) {
       exitBtn.onclick = function (e) {
         e.preventDefault();
+
+        // ریست پنل کاربری
+        sidePanel.style.right = "-250px";
+        panelContent.innerHTML = "";
+
+        // تلاش برای بستن صفحه
         window.open('', '_self').close();
       };
     }
@@ -569,8 +575,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
