@@ -526,7 +526,7 @@
       e.preventDefault();
       const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
 
-      if (cartItems.length === 0) {
+      if (!cartItems || cartItems.length === 0) {
         panelContent.innerHTML = "<p>سفارشی ندارید ❌</p>";
       } else {
         let html = "<h3 style='color: var(--accent-color); margin-bottom: 10px;'>سفارشات شما</h3>";
@@ -563,8 +563,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
