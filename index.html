@@ -470,6 +470,16 @@
     // ثبت‌نام
     form.onsubmit = function (event) {
       event.preventDefault();
+
+      const userData = {
+        username: document.getElementById("username").value.trim(),
+        password: document.getElementById("password").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim()
+      };
+
+      localStorage.setItem("registeredUser", JSON.stringify(userData));
+
       form.style.display = "none";
       successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
       successMessage.style.display = "block";
@@ -488,20 +498,34 @@
       }, 1000);
     };
 
-    // ورود
+    // ورود با بررسی اطلاعات
     loginForm.onsubmit = function (event) {
       event.preventDefault();
-      loginForm.style.display = "none";
-      successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
-      successMessage.style.display = "block";
 
-      setTimeout(() => {
-        document.body.style.transition = "opacity 1s ease";
-        document.body.style.opacity = "0";
+      const enteredUsername = document.getElementById("login-username").value.trim();
+      const enteredPassword = document.getElementById("login-password").value.trim();
+      const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
+
+      if (
+        savedUser &&
+        enteredUsername === savedUser.username &&
+        enteredPassword === savedUser.password
+      ) {
+        loginForm.style.display = "none";
+        successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
+        successMessage.style.display = "block";
+
         setTimeout(() => {
-          window.location.href = "Shop.html";
+          document.body.style.transition = "opacity 1s ease";
+          document.body.style.opacity = "0";
+          setTimeout(() => {
+            window.location.href = "Shop.html";
+          }, 1000);
         }, 1000);
-      }, 1000);
+      } else {
+        successMessage.innerHTML = "<p style='color:red;'>اطلاعات اشتباه است ❌ لطفاً دوباره تلاش کنید.</p>";
+        successMessage.style.display = "block";
+      }
     };
 
     // ✅ کنترل پنل سمت راست
@@ -592,8 +616,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
