@@ -1,4 +1,4 @@
-html_content = """
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -285,7 +285,7 @@ html_content = """
     <header class="header">
         <div class="container">
             <nav class="navbar">
-                <div class="logo">طراح مدل ها<span style="color: white;"> حمید حیدرزده </span></div>
+                <div class="logo">MTA_<span style="color: white;">3Ds</span></div>
                 <div class="nav-links">
                     <a href="#">خانه</a>
                     <a href="#">ام تی ای</a>
@@ -317,12 +317,12 @@ html_content = """
                     
                     <div class="game-card">
                         <h3>AutoDesk 3DMax</h3>
-                        <p>  !ساخته میشوندAdobe 3DMax تمام مدل هایی که ساخته میشه با نرم افزار فوق حرفه ای  </p>
+                        <p>  !ساخته میشوند Adobe 3DMax تمام مدل هایی که ساخته میشه با نرم افزار فوق حرفه ای  </p>
                     </div>
                     
                     <div class="game-card">
                         <h3>بهینه  مدل</h3>
-                        <p> مدل را در چندین مرحله تست و بهینه سازی نیز میکندMTA_3DS تیم</p>
+                        <p> مدل را در چندین مرحله تست و بهینه سازی نیز میکند MTA_3DS تیم</p>
                     </div>
                     
                     <div class="game-card">
@@ -382,66 +382,47 @@ html_content = """
       </div>
     </div>
 
-    <script>
-        // Get the modal element
-        const modal = document.getElementById("registrationModal");
+<script>
+    const modal = document.getElementById("registrationModal");
+    const span = document.getElementsByClassName("close-button")[0];
+    const successMessage = document.getElementById("success-message");
+    const form = document.getElementById("registration-form");
+    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
 
-        // Get the <span> element that closes the modal
-        const span = document.getElementsByClassName("close-button")[0];
-        
-        // Get the success message element
-        const successMessage = document.getElementById("success-message");
-        
-        // Get the form element
-        const form = document.getElementById("registration-form");
-        // Open modal buttons
-        const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
+    openBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "block";
+            form.style.display = "block";
+            successMessage.style.display = "none";
+            form.reset();
+        }
+    });
 
-        // When the user clicks on the button, open the modal 
-        openBtns.forEach(btn => {
-            btn.onclick = function() {
-                modal.style.display = "block";
-                // Reset form and message when opening
-                form.style.display = "block";
-                successMessage.style.display = "none";
-                form.reset();
-            }
-        });
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    form.onsubmit = function(event) {
+        event.preventDefault();
 
-        // Handle form submission
-        form.onsubmit = function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            // --- Simulation of successful registration ---
-            // In a real application, you would send data to a server here.
-            
-            // Hide the form
-            form.style.display = "none";
-            
-            // Show the success message
-            successMessage.style.display = "block";
-            
-            // Optional: Automatically close the modal after a few seconds to show the success message
-            setTimeout(function() {
-                modal.style.display = "none";
-            }, 4000); // Close after 4 seconds
-        }
+        form.style.display = "none";
+        successMessage.style.display = "block";
 
-    </script>
+        setTimeout(function() {
+            window.location.href = "download.html";
+        }, 1000); // انتقال بعد از 1 ثانیه
+    }
+</script>
+
 
 </body>
 </html>
+
 
 
