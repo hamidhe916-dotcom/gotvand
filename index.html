@@ -396,27 +396,67 @@
       </div>
     </div>
 
-  // ثبت‌نام
-  form.onsubmit = function (event) {
-    event.preventDefault();
-    form.style.display = "none";
-    successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
-    successMessage.style.display = "block";
+<script>
+    const modal = document.getElementById("registrationModal");
+    const span = document.getElementsByClassName("close-button")[0];
+    const successMessage = document.getElementById("success-message");
+    const form = document.getElementById("registration-form");
+    const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
 
-    // حذف دکمه ثبت‌نام بعد از ثبت موفق
-    const signupBtn = document.getElementById("open-modal-btn-hero");
-    if (signupBtn) {
-      signupBtn.remove();
+    openBtns.forEach(btn => {
+        btn.onclick = function() {
+            modal.style.display = "block";
+            form.style.display = "block";
+            successMessage.style.display = "none";
+            form.reset();
+        }
+    });
+
+    span.onclick = function() {
+        modal.style.display = "none";
     }
 
-    setTimeout(function () {
-      document.body.style.transition = "opacity 1s ease";
-      document.body.style.opacity = "0";
-      setTimeout(function () {
-        window.location.href = "index.html";
-      }, 1000);
-    }, 1000);
-  };
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    form.onsubmit = function(event) {
+        event.preventDefault();
+
+        form.style.display = "none";
+        successMessage.style.display = "block";
+
+        // حذف دکمه ثبت‌نام بعد از ثبت موفق
+        const signupBtn = document.getElementById("open-modal-btn-hero");
+        if (signupBtn) {
+            signupBtn.remove();
+        }
+
+        setTimeout(function() {
+            document.body.style.transition = "opacity 1s ease";
+            document.body.style.opacity = "0";
+
+            setTimeout(function() {
+                window.location.href = "download.html";
+            }, 1000);
+        }, 1000);
+    }
+
+    // ✅ اضافه شدن کنترل پنل سمت راست
+    const sideToggle = document.getElementById("side-toggle");
+    const sidePanel = document.getElementById("side-panel");
+
+    sideToggle.onclick = function () {
+        if (sidePanel.style.right === "0px") {
+            sidePanel.style.right = "-250px";
+        } else {
+            sidePanel.style.right = "0px";
+        }
+    };
+</script>
+
 
 
 
