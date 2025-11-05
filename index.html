@@ -408,7 +408,6 @@
     const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
     const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
 
-    // فرم ورود داینامیک
     const loginForm = document.createElement("form");
     loginForm.id = "login-form";
     loginForm.style.display = "none";
@@ -436,13 +435,11 @@
     `;
     document.querySelector(".modal-content").appendChild(loginForm);
 
-    // حذف دکمه ثبت‌نام اگر قبلاً ثبت‌نام شده
     const signupBtn = document.getElementById("open-modal-btn-hero");
     if (localStorage.getItem("registeredUser") && signupBtn) {
       signupBtn.remove();
     }
 
-    // باز کردن مودال ثبت‌نام
     openBtns.forEach(btn => {
       btn.onclick = function () {
         modal.style.display = "block";
@@ -453,7 +450,6 @@
       };
     });
 
-    // باز کردن مودال ورود
     loginBtn.onclick = function () {
       modal.style.display = "block";
       form.style.display = "none";
@@ -462,7 +458,6 @@
       loginForm.reset();
     };
 
-    // بستن مودال
     span.onclick = function () {
       modal.style.display = "none";
     };
@@ -473,7 +468,6 @@
       }
     };
 
-    // ثبت‌نام
     form.onsubmit = function (event) {
       event.preventDefault();
 
@@ -503,7 +497,6 @@
       }, 1000);
     };
 
-    // ورود با بررسی اطلاعات
     loginForm.onsubmit = function (event) {
       event.preventDefault();
 
@@ -533,7 +526,6 @@
       }
     };
 
-    // ✅ کنترل پنل سمت راست
     const sideToggle = document.getElementById("side-toggle");
     const sidePanel = document.getElementById("side-panel");
     const panelContent = document.getElementById("panel-content");
@@ -597,6 +589,20 @@
         window.open('', '_self').close();
       };
     }
+
+    // ✅ دکمه حذف اطلاعات کاربر
+    const clearBtn = document.getElementById("clear-user-data");
+    if (clearBtn) {
+      clearBtn.onclick = function (e) {
+        e.preventDefault();
+        localStorage.removeItem("registeredUser");
+        localStorage.removeItem("isRegistered");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("cartItems");
+        alert("اطلاعات کاربر با موفقیت حذف شد ✅");
+        location.reload();
+      };
+    }
   };
 </script>
 
@@ -618,8 +624,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
