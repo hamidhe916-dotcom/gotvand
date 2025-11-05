@@ -436,6 +436,12 @@
     `;
     document.querySelector(".modal-content").appendChild(loginForm);
 
+    // حذف دکمه ثبت‌نام اگر قبلاً ثبت‌نام شده
+    const signupBtn = document.getElementById("open-modal-btn-hero");
+    if (localStorage.getItem("registeredUser") && signupBtn) {
+      signupBtn.remove();
+    }
+
     // باز کردن مودال ثبت‌نام
     openBtns.forEach(btn => {
       btn.onclick = function () {
@@ -484,7 +490,6 @@
       successMessage.innerHTML = "<p>اطلاعات شما با موفقیت ثبت شد ✅ در حال انتقال...</p>";
       successMessage.style.display = "block";
 
-      const signupBtn = document.getElementById("open-modal-btn-hero");
       if (signupBtn) {
         signupBtn.remove();
       }
@@ -537,14 +542,12 @@
     const downloadsBtn = document.getElementById("downloads-btn");
     const exitBtn = document.getElementById("exit-btn");
 
-    // باز و بسته کردن پنل
     if (sideToggle && sidePanel) {
       sideToggle.onclick = function () {
         sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
       };
     }
 
-    // پروفایل
     if (profileBtn && panelContent) {
       profileBtn.onclick = function (e) {
         e.preventDefault();
@@ -557,7 +560,6 @@
       };
     }
 
-    // سفارشات
     if (ordersBtn && panelContent) {
       ordersBtn.onclick = function (e) {
         e.preventDefault();
@@ -580,7 +582,6 @@
       };
     }
 
-    // دانلودها
     if (downloadsBtn && panelContent) {
       downloadsBtn.onclick = function (e) {
         e.preventDefault();
@@ -588,7 +589,6 @@
       };
     }
 
-    // خروج
     if (exitBtn) {
       exitBtn.onclick = function (e) {
         e.preventDefault();
@@ -617,8 +617,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
