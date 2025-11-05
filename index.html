@@ -9,7 +9,8 @@
     body {
       margin: 0;
       font-family: 'Vazirmatn', sans-serif;
-      background: url('https://s6.uupload.ir/files/copilot_20251105_203630_l3d2.png') center/cover no-repeat;
+      background: url('https://s6.uupload.ir/files/copilot_20251105_203630_l3d2.png') no-repeat top center;
+      background-size: 600px auto;
       background-color: #121212;
       color: #fff;
       height: 100vh;
@@ -154,7 +155,7 @@
     <div class="form-group">
       <input type="password" placeholder="رمز عبور" required />
     </div>
-    <button type="submit" class="submit-btn">ثبت‌نام</button>
+    <h2 type="submit" class="submit-btn">ثبت نام</h2>
   </form>
 </div>
 
@@ -182,7 +183,7 @@
   }
 
   function resetPassword() {
-    alert('لینک بازیابی رمز عبور برای شما ارسال شد!');
+    alert('Coming Soon...');
   }
 
   function showNotification(message) {
@@ -198,12 +199,12 @@
 
   document.querySelector('#loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    showNotification('🎉 خوش آمدید به فروشگاه پوشاک حیدرزاده');
+    showNotification('به حساب خود خوش آمدید');
   });
 
   document.querySelector('#registerForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    showNotification('✅ شما با موفقیت در فروشگاه ما ثبت‌نام کردید');
+    showNotification('✅اطلاعات شما در سایت ما ثبت شد');
   });
 </script>
 
