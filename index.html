@@ -12,15 +12,16 @@
     }
     body, html {
       height: 100%;
-      background: url('https://copilot.microsoft.com/th/id/BCO.d3140e5d-89a6-4123-a9a4-da9cf0fe1e0b.png') center/cover no-repeat;
+      background: url('https://copilot.microsoft.com/th/id/BCO.d3140e5d-89a6-4123-a9a4-da9cf0fe1e0b.png') center center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       z-index: 0;
     }
     .center-content {
@@ -31,9 +32,10 @@
       animation: fadeIn 1.5s ease-out;
     }
     .center-content h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 1rem;
       color: #f5c542;
+      text-shadow: 0 0 10px #000;
     }
     .center-content button {
       background: #f5c542;
@@ -44,6 +46,7 @@
       font-size: 1.2rem;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 0 10px #f5c54255;
     }
     .center-content button:hover {
       background: #fff;
@@ -60,7 +63,7 @@
   <div class="overlay"></div>
   <div class="center-content">
     <h1>پوشاک حیدرزاده</h1>
-    <button onclick="alert('به فروشگاه خوش آمدید!')">ورود به فروشگاه</button>
+    <button onclick="location.href='product.html'">ورود به فروشگاه</button>
   </div>
 </body>
 </html>
