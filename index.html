@@ -398,34 +398,6 @@
 
 <script>
   window.onload = function () {
-    // ✅ نمایش پیام خوش‌آمدگویی هنگام ورود به سایت
-    const welcomeToast = document.createElement("div");
-    welcomeToast.textContent = "به سایت ما خوش آمدید 🌟";
-    welcomeToast.style.position = "fixed";
-    welcomeToast.style.top = "50%";
-    welcomeToast.style.left = "50%";
-    welcomeToast.style.transform = "translate(-50%, -50%) scale(1)";
-    welcomeToast.style.backgroundColor = "#00cc99";
-    welcomeToast.style.color = "white";
-    welcomeToast.style.padding = "20px 30px";
-    welcomeToast.style.borderRadius = "10px";
-    welcomeToast.style.fontSize = "1.2em";
-    welcomeToast.style.fontWeight = "bold";
-    welcomeToast.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
-    welcomeToast.style.zIndex = "99999";
-    welcomeToast.style.opacity = "1";
-    welcomeToast.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-    document.body.appendChild(welcomeToast);
-
-    setTimeout(() => {
-      welcomeToast.style.opacity = "0";
-      welcomeToast.style.transform = "translate(-50%, -50%) scale(0.9)";
-      setTimeout(() => {
-        welcomeToast.remove();
-      }, 500);
-    }, 3000);
-
-    // ✅ ادامه اسکریپت اصلی بدون تغییر
     const modal = document.getElementById("registrationModal");
     const span = document.querySelector(".close-button");
     const successMessage = document.getElementById("success-message");
@@ -615,6 +587,7 @@
       };
     }
 
+    // ✅ دکمه حذف اطلاعات فقط برای مدیر
     const clearBtn = document.getElementById("clear-user-data");
     if (clearBtn) {
       clearBtn.onclick = function (e) {
@@ -622,12 +595,24 @@
         const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
         if (savedUser && savedUser.username === "HamidAdmin") {
           localStorage.removeItem("registeredUser");
-
+          localStorage.removeItem("isRegistered");
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("cartItems");
+          alert("اطلاعات کاربر با موفقیت حذف شد ✅");
+          location.reload();
+        } else {
+          alert("شما مجاز به حذف اطلاعات نیستید ❌ فقط مدیر اصلی می‌تواند این کار را انجام دهد.");
+        }
+      };
+    }
+  };
 </script>
+
 
 
 </body>
 </html>
+
 
 
 
