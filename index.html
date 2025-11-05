@@ -42,6 +42,74 @@
       transition: opacity 0.5s ease, transform 0.5s ease;
       pointer-events: none;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid var(--accent-color);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .close-button {
+      color: var(--accent-color);
+      float: left;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #1a1a2e;
+      color: white;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+
+    button[type="submit"]:hover {
+      background-color: white;
+    }
   </style>
 </head>
 <body>
@@ -108,18 +176,7 @@
           <label for="login-password">رمز عبور:</label>
           <input type="password" id="login-password" name="login-password" required>
         </div>
-        <button type="submit" style="
-          width: 100%;
-          padding: 12px;
-          background-color: var(--accent-color);
-          color: var(--primary-color);
-          border: none;
-          border-radius: 5px;
-          font-size: 1.1em;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          font-weight: bold;
-        ">ورود</button>
+        <button type="submit">ورود</button>
       `;
       document.querySelector(".modal-content").appendChild(loginForm);
 
@@ -191,36 +248,4 @@
       loginForm.onsubmit = function (event) {
         event.preventDefault();
 
-        const enteredUsername = document.getElementById("login-username").value.trim();
-        const enteredPassword = document.getElementById("login-password").value.trim();
-        const savedUser = JSON.parse(localStorage.getItem("registeredUser"));
-
-        if (
-          savedUser &&
-          enteredUsername === savedUser.username &&
-          enteredPassword === savedUser.password
-        ) {
-          localStorage.setItem("isLoggedIn", "true");
-
-          loginForm.style.display = "none";
-          successMessage.innerHTML = "<p>ورود موفقیت‌آمیز بود ✅ در حال انتقال...</p>";
-          successMessage.style.display = "block";
-
-          setTimeout(() => {
-            document.body.style.transition = "opacity 1s ease";
-            document.body.style.opacity = "0";
-            setTimeout(() => {
-              window.location.href = "Shop.html";
-            }, 1000);
-          }, 1000);
-        } else {
-          toast.style.top = "20px";
-          setTimeout(() => {
-            toast.style.top = "-80px";
-          }, 3000);
-        }
-      };
-    };
-  </script>
-</body>
-</html>
+        const enteredUsername = document.getElementById
