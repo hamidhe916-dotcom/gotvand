@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پوشاک حیدرزاده | صفحه نخست</title>
+  <title>پوشاک حیدرزاده | ورود / ثبت‌نام</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Vazirmatn', sans-serif;
-      background: url('https://copilot.microsoft.com/th/id/BCO.2f1c7e7e-2c9e-4e6f-9e6b-7c3a6f3f8e4f.png') center/cover no-repeat;
+      background: url('https://copilot.microsoft.com/th/id/BCO.def9c6f1-bc76-4e31-b2c7-478f45ea6613.png') center/cover no-repeat;
       background-color: #121212;
       color: #fff;
       height: 100vh;
@@ -42,15 +42,86 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
     }
-    .hero h2 {
-      font-size: 2rem;
-      color: #f5c542;
-      background: rgba(0,0,0,0.6);
-      padding: 1rem 2rem;
+    .form-box {
+      background: rgba(0,0,0,0.75);
+      padding: 2rem;
       border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
       box-shadow: 0 0 20px #000;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .form-box h2 {
+      text-align: center;
+      color: #f5c542;
+      margin-bottom: 1rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      color: #ccc;
+      border-bottom: 2px solid transparent;
+      transition: 0.3s;
+    }
+    .tab.active {
+      color: #f5c542;
+      border-bottom: 2px solid #f5c542;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: none;
+      background: #333;
+      color: #fff;
+      transition: 0.3s;
+    }
+    .form-group input:focus {
+      background: #444;
+      outline: none;
+      box-shadow: 0 0 5px #f5c542;
+    }
+    .form-group input::placeholder {
+      color: #aaa;
+    }
+    .forgot-link {
+      text-align: left;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      color: #aaa;
+    }
+    .forgot-link:hover {
+      color: #f5c542;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: #f5c542;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .submit-btn:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.03);
     }
   </style>
 </head>
@@ -66,8 +137,62 @@
 </header>
 
 <div class="hero">
-  <h2>به فروشگاه رسمی پوشاک حیدرزاده خوش آمدید</h2>
+  <div class="form-box">
+    <h2>ورود / ثبت‌نام</h2>
+    <div class="tabs">
+      <span class="tab active" id="loginTab" onclick="showForm('login')">ورود</span>
+      <span class="tab" id="registerTab" onclick="showForm('register')">ثبت‌نام</span>
+    </div>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
+      </div>
+      <div class="forgot-link" onclick="resetPassword()">فراموشی رمز عبور</div>
+      <button type="submit" class="submit-btn">ورود</button>
+    </form>
+
+    <form id="registerForm" style="display: none;">
+      <div class="form-group">
+        <input type="text" placeholder="نام کاربری" required />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="ایمیل" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="رمز عبور" required />
+      </div>
+      <button type="submit" class="submit-btn">ثبت‌نام</button>
+    </form>
+  </div>
 </div>
+
+<script>
+  function showForm(type) {
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+
+    if (type === 'login') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      loginTab.classList.add('active');
+      registerTab.classList.remove('active');
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      loginTab.classList.remove('active');
+      registerTab.classList.add('active');
+    }
+  }
+
+  function resetPassword() {
+    alert('لینک بازیابی رمز عبور برای شما ارسال شد!');
+  }
+</script>
 
 </body>
 </html>
