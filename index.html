@@ -5,118 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ثبت‌نام | پوشاک حیدرزاده</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Vazirmatn', sans-serif;
-      background: url('https://copilot.microsoft.com/th/id/BCO.dd9e2052-8b22-4f12-8ea2-28b90b55b38f.png') center/cover no-repeat;
-      background-color: #121212;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .form-box {
-      background: rgba(0,0,0,0.75);
-      padding: 2rem;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 0 20px #000;
-    }
-    .form-box h1 {
-      text-align: center;
-      color: #f5c542;
-      margin-bottom: 1rem;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    .tab {
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      color: #ccc;
-      border-bottom: 2px solid transparent;
-    }
-    .tab.active {
-      color: #f5c542;
-      border-bottom: 2px solid #f5c542;
-    }
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 8px;
-      border: none;
-      background: #333;
-      color: #fff;
-    }
-    .form-group input::placeholder {
-      color: #aaa;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 0.8rem;
-      background: #f5c542;
-      color: #111;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .submit-btn:hover {
-      background: #fff;
-      color: #000;
-    }
-  </style>
-</head>
-<body>
+<!-- دکمه باز کردن پنل -->
+<div id="side-toggle" style="position: fixed; top: 20px; right: 20px; font-size: 28px; color: #f5c542; cursor: pointer; z-index: 9999;">☰</div>
 
-  <div class="form-box">
-    <h1>پوشاک حیدرزاده</h1>
-    <div class="tabs">
-      <div class="tab active" onclick="showForm('login')">ورود</div>
-      <div class="tab" onclick="showForm('register')">ثبت‌نام</div>
-    </div>
+<!-- پنل کشویی -->
+<div id="side-panel" style="position: fixed; top: 0; right: -250px; width: 250px; height: 100%; background-color: #1a1a1a; box-shadow: -2px 0 10px rgba(0,0,0,0.5); transition: right 0.3s ease; z-index: 9998; padding: 30px; box-sizing: border-box;">
+  <h2 style="color: #f5c542; font-size: 1.6em; margin-bottom: 30px; text-align: center;">پنل کاربری</h2>
+  <a href="#" id="profileBtn" class="panel-btn">پروفایل</a>
+  <a href="#" id="ordersBtn" class="panel-btn">سفارشات</a>
+  <a href="#" id="downloadsBtn" class="panel-btn">دانلودها</a>
+  <a href="#" id="exitBtn" class="panel-btn">خروج</a>
+</div>
 
-    <form id="login-form">
-      <div class="form-group">
-        <input type="text" placeholder="نام کاربری" required />
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="رمز عبور" required />
-      </div>
-      <button class="submit-btn">ورود</button>
-    </form>
+<style>
+  .panel-btn {
+    display: block;
+    width: 100%;
+    background-color: #f5c542;
+    color: #111;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .panel-btn:hover {
+    background-color: #fff;
+    color: #000;
+  }
+</style>
 
-    <form id="register-form" style="display:none;">
-      <div class="form-group">
-        <input type="text" placeholder="نام کاربری" required />
-      </div>
-      <div class="form-group">
-        <input type="email" placeholder="ایمیل" required />
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="رمز عبور" required />
-      </div>
-      <button class="submit-btn">ثبت‌نام</button>
-    </form>
-  </div>
+<script>
+  const sideToggle = document.getElementById("side-toggle");
+  const sidePanel = document.getElementById("side-panel");
 
-  <script>
-    function showForm(mode) {
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      document.querySelector(`.tab[onclick="showForm('${mode}')"]`).classList.add('active');
-      document.getElementById('login-form').style.display = mode === 'login' ? 'block' : 'none';
-      document.getElementById('register-form').style.display = mode === 'register' ? 'block' : 'none';
-    }
-  </script>
+  sideToggle.onclick = () => {
+    sidePanel.style.right = sidePanel.style.right === "0px" ? "-250px" : "0px";
+  };
+
+  document.getElementById("profileBtn").onclick = () => {
+    alert("نمایش اطلاعات کاربر: حمید حیدرزاده");
+  };
+
+  document.getElementById("ordersBtn").onclick = () => {
+    alert("سفارشات شما در حال بارگذاری است...");
+  };
+
+  document.getElementById("downloadsBtn").onclick = () => {
+    alert("دانلودها در دسترس نیستند.");
+  };
+
+  document.getElementById("exitBtn").onclick = () => {
+    sidePanel.style.right = "-250px";
+    alert("خروج انجام شد ✅");
+  };
+</script>
+
 
 </body>
 </html>
+
