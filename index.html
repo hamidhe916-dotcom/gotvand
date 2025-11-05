@@ -407,6 +407,7 @@
     const form = document.getElementById("registration-form");
     const openBtns = document.querySelectorAll("#open-modal-btn, #open-modal-btn-hero");
     const loginBtn = document.querySelector('.open-modal-btn[data-mode="login"]');
+    const toast = document.getElementById("login-error-toast");
 
     // فرم ورود داینامیک
     const loginForm = document.createElement("form");
@@ -523,8 +524,10 @@
           }, 1000);
         }, 1000);
       } else {
-        successMessage.innerHTML = "<p style='color:red;'>نام کاربری یا رمز عبور اشتباه است!.</p>";
-        successMessage.style.display = "block";
+        toast.style.top = "20px";
+        setTimeout(() => {
+          toast.style.top = "-80px";
+        }, 3000);
       }
     };
 
@@ -617,8 +620,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
